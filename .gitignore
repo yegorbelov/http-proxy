@@ -24,6 +24,9 @@ proxy.log
 
 .idea/
 .vscode/
+
+# clangd / language-server index
+.cache/
 *.swp
 *.swo
 *~

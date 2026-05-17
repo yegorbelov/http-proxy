@@ -10,21 +10,19 @@
 #include <string>
 
 namespace hp {
-
 class HttpProxyServer {
-   public:
-    HttpProxyServer();
-    int run();
-    void stop();
+public:
+  HttpProxyServer();
+  int run();
+  void stop();
 
-   private:
-    int bind_listen();
-    int lsock_{-1};
-    std::atomic_bool run_flag_{true};
-    UrlFilter filter_;
-    ResponseCache cache_{};
-    std::shared_ptr<EventLog> log_{};
-    std::unique_ptr<ClientSessionFactory> session_factory_{};
+private:
+  int bind_listen();
+  int lsock_{-1};
+  std::atomic_bool run_flag_{true};
+  UrlFilter filter_;
+  ResponseCache cache_{};
+  std::shared_ptr<EventLog> log_{};
+  std::unique_ptr<ClientSessionFactory> session_factory_{};
 };
-
-}  // namespace hp
+} // namespace hp
