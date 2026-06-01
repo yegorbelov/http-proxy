@@ -53,3 +53,18 @@ printf '%s\n' 'GET http://example.com/foo HTTP/1.1' 'Host: example.com' '' |
   ./build/tests/scenario_parse_request
 ./build/tests/scenario_url_policy - 'bad.com' 'http://bad.com/x'
 ```
+
+Запуск конкретной группы тестов
+
+```sh
+ctest --output-on-failure -R EventLogEvictionTest*
+```
+
+## Docker
+
+Тесты — **GoogleTest**, в контейнере запускаются через `ctest` при сборке образа.
+
+```sh
+docker build -t proxy .
+docker run --rm -p 18080:18080 proxy
+```

@@ -103,7 +103,7 @@ void ProxyConfig::load(const std::string &path) {
   set_defaults();
   std::ifstream f(path);
   if (!f) {
-    std::cerr << "pks3-http-proxy: no config " << path << " — defaults\n";
+    std::cerr << "http-proxy: no config " << path << " — defaults\n";
     return;
   }
   std::string line;

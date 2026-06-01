@@ -35,7 +35,7 @@ void HttpProxyServer::stop() {
 int HttpProxyServer::bind_listen() {
   int s = ::socket(AF_INET, SOCK_STREAM, 0);
   if (s < 0) {
-    std::cerr << "pks3-http-proxy: socket() failed: " << std::strerror(errno)
+    std::cerr << "http-proxy: socket() failed: " << std::strerror(errno)
               << std::endl;
     return -1;
   }
@@ -56,13 +56,13 @@ int HttpProxyServer::bind_listen() {
     }
   }
   if (::bind(s, (sockaddr *)&a, sizeof a) != 0) {
-    std::cerr << "pks3-http-proxy: bind() failed: " << std::strerror(errno)
+    std::cerr << "http-proxy: bind() failed: " << std::strerror(errno)
               << std::endl;
     close(s);
     return -1;
   }
   if (::listen(s, 64) != 0) {
-    std::cerr << "pks3-http-proxy: listen() failed: " << std::strerror(errno)
+    std::cerr << "http-proxy: listen() failed: " << std::strerror(errno)
               << std::endl;
     close(s);
     return -1;
@@ -86,9 +86,8 @@ int HttpProxyServer::run() {
     g_srv = nullptr;
     return 1;
   }
-  std::cerr << "pks3-http-proxy: listening "
-            << ProxyConfig::instance().listenHost() << ":"
-            << ProxyConfig::instance().listenPort() << std::endl;
+  std::cerr << "http-proxy: listening " << ProxyConfig::instance().listenHost()
+            << ":" << ProxyConfig::instance().listenPort() << std::endl;
   for (;;) {
     if (!run_flag_.load()) {
       break;
